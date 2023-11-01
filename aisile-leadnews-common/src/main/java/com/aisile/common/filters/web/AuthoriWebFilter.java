@@ -26,30 +26,31 @@ public class AuthoriWebFilter implements Filter {
 
         if (request.getRequestURI().contains("/login/in"))
             filterChain.doFilter(request, response);
-        String token = request.getHeader("token");
-        ResponseResult result = null;
-        try {
-            if (token == null || "".equals(token.trim()))
-                result = ResponseResult.errorResult(AppHttpCodeEnum.TOKEN_REQUIRE);
-            else {
-                Claims claimsBody = AppJwtUtil.getClaimsBody(token);
-                int i = AppJwtUtil.verifyToken(claimsBody);
-                if (i == -1 || i == 0) {
-                    if (i == 0)
-                        response.setHeader("REF_TOKEN",
-                                AppJwtUtil.getToken((long) AdminThreadLocalUtils.getUser().getId()));
-                    filterChain.doFilter(request, response);
-                } else if (i == 1)
-                    result = ResponseResult.errorResult(AppHttpCodeEnum.TOKEN_EXPIRE);
-                else if (i == 2)
-                    result = ResponseResult.errorResult(AppHttpCodeEnum.TOKEN_INVALID);
+        else {
+            String token = request.getHeader("token");
+            ResponseResult result = null;
+            try {
+                if (token == null || "".equals(token.trim()))
+                    result = ResponseResult.errorResult(AppHttpCodeEnum.TOKEN_REQUIRE);
+                else {
+                    Claims claimsBody = AppJwtUtil.getClaimsBody(token);
+                    int i = AppJwtUtil.verifyToken(claimsBody);
+                    if (i == -1 || i == 0) {
+                        if (i == 0)
+                            response.setHeader("REF_TOKEN",
+                                    AppJwtUtil.getToken((long) AdminThreadLocalUtils.getUser().getId()));
+                        filterChain.doFilter(request, response);
+                    } else if (i == 1)
+                        result = ResponseResult.errorResult(AppHttpCodeEnum.TOKEN_EXPIRE);
+                    else if (i == 2)
+                        result = ResponseResult.errorResult(AppHttpCodeEnum.TOKEN_INVALID);
+                }
+            } catch (Exception e) {
+                result = ResponseResult.errorResult(AppHttpCodeEnum.TOKEN_INVALID);
+            } finally {
+                if (result != null)
+                    response.getOutputStream().write(JSON.toJSONString(result).getBytes());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (result != null)
-                response.getWriter().write(JSON.toJSONString(result));
         }
-
     }
 }

@@ -64,6 +64,7 @@
       <option name="customHeaders">
         <set>
           <option value="REF_TOKEN" />
+          <option value="token" />
         </set>
       </option>
     </inspection_tool>

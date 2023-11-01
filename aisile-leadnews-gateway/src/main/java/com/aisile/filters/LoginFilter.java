@@ -26,12 +26,14 @@ public class LoginFilter implements GlobalFilter {
                 response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 return response.setComplete();
             }
-            int i = AppJwtUtil.verifyToken(AppJwtUtil.getClaimsBody(token));
-            //验证token的正确性
-            if (i == 2) {
+            try {
+                AppJwtUtil.verifyToken(AppJwtUtil.getClaimsBody(token));
+                //验证token的正确性
+            } catch (Exception e) {
                 response.setStatusCode(HttpStatus.UNAUTHORIZED);
                 return response.setComplete();
             }
+
         }
         return chain.filter(exchange);
     }

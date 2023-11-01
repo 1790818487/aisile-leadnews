@@ -91,6 +91,7 @@ public class AppJwtUtil {
         } catch (ExpiredJwtException ex) {
             return 1;
         } catch (Exception e) {
+            System.out.println("抓取到了2");
             return 2;
         }
     }
