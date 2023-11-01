@@ -1,0 +1,19 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: login-service
+          uri: lb://login-service
+          predicates:
+            - Path=/api/v1/login/**,/api/v1/adChannel/**,
+
+
+#        - id: material-service
+#          uri: lb://material-service
+#          predicates:
+#            - Path=/item/**,/category/**
+#
+#        - id: order-service
+#          uri: lb://order-service
+#          predicates:
+#            - Path=/order/**,/company/**,/type/**

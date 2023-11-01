@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-admin/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-apis" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-apis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-common/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-model" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-model/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-utils" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-utils/src/main/java" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
