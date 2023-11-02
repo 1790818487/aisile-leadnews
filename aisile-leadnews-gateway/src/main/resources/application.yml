@@ -5,7 +5,7 @@ spring:
         - id: login-service
           uri: lb://login-service
           predicates:
-            - Path=/api/v1/login/**,/api/v1/adChannel/**,
+            - Path=/api/v1/login/**,/api/v1/adChannel/**,/api/v1/sensitive/**
 
 
 #        - id: material-service
