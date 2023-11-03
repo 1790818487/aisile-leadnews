@@ -2,11 +2,17 @@ spring:
   cloud:
     gateway:
       routes:
+#          管理员微服务网关
         - id: login-service
           uri: lb://login-service
           predicates:
             - Path=/api/v1/login/**,/api/v1/adChannel/**,/api/v1/sensitive/**
 
+#              用户微服务网关
+        - id: user-service
+          uri: lb://user-service
+          predicates:
+            - Path=/api/user/**
 
 #        - id: material-service
 #          uri: lb://material-service

@@ -7,11 +7,7 @@ import com.aisile.model.common.dtos.PageRequestDto;
 import com.aisile.model.common.dtos.ResponseResult;
 import com.aisile.service.ISensitiveService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -32,5 +28,17 @@ public class SensitiveController implements AdminSensitiveApi {
     @PostMapping("sensitive")
     public ResponseResult showAllSensitive(@RequestBody SensitiveDto dto) {
         return sensitiveService.showAllSensitive(dto);
+    }
+
+    @Override
+    @PostMapping("addSensitive")
+    public ResponseResult addSensitive(@RequestBody SensitiveDto dto) {
+        return sensitiveService.addSensitive(dto.getName());
+    }
+
+    @Override
+    @DeleteMapping("{id}")
+    public ResponseResult delSensitive(@PathVariable int id) {
+        return null;
     }
 }

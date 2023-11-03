@@ -15,6 +15,7 @@
         <module>aisile-leadnews-model</module>
         <module>aisile-leadnews-admin</module>
         <module>aisile-leadnews-gateway</module>
+        <module>aisile-leadnews-user</module>
     </modules>
 
     <!-- 继承Spring boot工程 -->

@@ -11,4 +11,8 @@ import com.aisile.model.common.dtos.ResponseResult;
 public interface AdminSensitiveApi {
 
     ResponseResult showAllSensitive(SensitiveDto dto);
+
+    ResponseResult addSensitive(SensitiveDto dto);
+
+    ResponseResult delSensitive(int id);
 }

@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="aisile-leadnews-utils" />
+        <module name="aisile-leadnews-user" />
         <module name="aisile-leadnews-gateway" />
         <module name="heima-leadnews-admin" />
         <module name="aisile-leadnews-common" />

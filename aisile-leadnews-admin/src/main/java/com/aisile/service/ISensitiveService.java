@@ -6,6 +6,7 @@ import com.aisile.model.admin.pojos.AdSensitive;
 import com.aisile.model.common.dtos.PageRequestDto;
 import com.aisile.model.common.dtos.ResponseResult;
 import com.baomidou.mybatisplus.extension.service.IService;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  * <p>
@@ -18,4 +19,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface ISensitiveService extends IService<AdSensitive> {
 
     ResponseResult showAllSensitive(SensitiveDto dto);
+
+    ResponseResult addSensitive(String name);
+
+    ResponseResult delSensitive( int id);
 }

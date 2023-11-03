@@ -33,8 +33,7 @@ public class ExceptionCatch {
     @ExceptionHandler(value = {Exception.class})
     @ResponseBody
     public ResponseResult NotCustomException(Exception e) {
-//        e.printStackTrace();
-//        log.info(e.toString());
+        e.printStackTrace();
         if (exceptions == null) {
             exceptions = builder.build();
         }

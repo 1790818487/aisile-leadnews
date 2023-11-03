@@ -28,7 +28,8 @@ public enum AppHttpCodeEnum {
     // 数据错误 3000~3500
     NO_OPERATOR_AUTH(3000, "无权限操作"),
     NEED_ADMIND(3001, "需要管理员权限"),
-    USERNAME_DISABLED(3002, "账户被禁用，请联系管理");
+    USERNAME_DISABLED(3002, "账户被禁用，请联系管理"),
+    DATA_ALREADY_DEL(505,"该数据早已被删除");
 
 
     int code;
