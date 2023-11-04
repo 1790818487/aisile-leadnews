@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -90,17 +91,20 @@ public class ApUserRealname implements Serializable {
      * 创建时间
      */
     @TableField("created_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createdTime;
 
     /**
      * 提交时间
      */
     @TableField("submited_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date submitedTime;
 
     /**
      * 更新时间
      */
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField("updated_time")
     private Date updatedTime;
 

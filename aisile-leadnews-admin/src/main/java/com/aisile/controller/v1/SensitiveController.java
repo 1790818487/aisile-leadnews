@@ -39,6 +39,6 @@ public class SensitiveController implements AdminSensitiveApi {
     @Override
     @DeleteMapping("{id}")
     public ResponseResult delSensitive(@PathVariable int id) {
-        return null;
+        return sensitiveService.delSensitive(id);
     }
 }

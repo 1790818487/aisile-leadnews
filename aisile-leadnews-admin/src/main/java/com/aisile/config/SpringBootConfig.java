@@ -15,6 +15,5 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 @EnableDiscoveryClient
 @EnableWebMvc
 @ServletComponentScan("com.aisile.common.filters.web")
-@EnableFeignClients(basePackages = "com.aisile.feign")
 public class SpringBootConfig {
 }

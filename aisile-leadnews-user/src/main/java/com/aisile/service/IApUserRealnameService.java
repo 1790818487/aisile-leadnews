@@ -16,6 +16,12 @@ import org.springframework.web.bind.annotation.PathVariable;
  * @since 2023-11-02
  */
 public interface IApUserRealnameService extends IService<ApUserRealname> {
-    ResponseResult showRealName(PageRequestDto dto,int status);
-    ResponseResult updateStatus(int status,int id);
+    ResponseResult showRealName(PageRequestDto dto, int status);
+
+    ResponseResult updateStatus(int status, int id);
+
+    //    ResponseResult addRealNameUser();
+    ResponseResult userUealName(ApUserRealname realname);
+
+
 }

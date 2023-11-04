@@ -39,4 +39,15 @@ public class ApUserRealnameController implements UserRealNameControllerApi {
         return userRealnameService.updateStatus(status,id);
     }
 
+    @Override
+    @PostMapping("realname")
+    public ResponseResult userUealName(@RequestBody ApUserRealname realname) {
+        return userRealnameService.userUealName(realname);
+    }
+//
+//    @GetMapping
+//    public String test(){
+//        userRealnameService.addRealNameUser();
+//        return "success";
+//    }
 }
