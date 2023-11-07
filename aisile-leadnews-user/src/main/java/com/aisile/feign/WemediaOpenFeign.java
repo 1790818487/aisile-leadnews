@@ -14,12 +14,12 @@ import javax.ws.rs.HeaderParam;
 @FeignClient("wemedia-service")
 public interface WemediaOpenFeign {
 
-    @PostMapping(value = "/api/wmuser/add/wemedia", headers = {"token:${token}"})
-    public ApAuthor addWmUser(@RequestBody WmUser wmUser, @HeaderParam("token") String token);
+    @PostMapping(value = "/api/wmuser/add/wemedia")
+    public ApAuthor addWmUser(@RequestBody WmUser wmUser);
 
-    @GetMapping(value = "/api/wmuser/fing/{id}", headers = {"token:${token}"})
-    public WmUser findByUserId(@PathVariable("id") int user_id, @HeaderParam("token") String token);
+    @GetMapping(value = "/api/wmuser/fing/{id}")
+    public WmUser findByUserId(@PathVariable("id") int user_id);
 
-    @PostMapping(value = "/api/wmuser/update", headers = {"token:${token}"})
-    public ResponseResult updateById(@RequestBody WmUser wmUser, @HeaderParam("token") String token);
+    @PostMapping(value = "/api/wmuser/update")
+    public ResponseResult updateById(@RequestBody WmUser wmUser);
 }

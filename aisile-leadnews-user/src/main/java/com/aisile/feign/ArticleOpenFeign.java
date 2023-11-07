@@ -12,11 +12,11 @@ import javax.ws.rs.HeaderParam;
 @FeignClient("article-service")
 public interface ArticleOpenFeign {
     //     /api/apauthor
-    @PostMapping(value = "/api/apauthor/add",headers = {"token:${token}"})
-    ResponseResult saveArticle(ApAuthor apAuthor, @HeaderParam("token") String token);
+    @PostMapping(value = "/api/apauthor/add")
+    ResponseResult saveArticle(ApAuthor apAuthor);
 
 
-    @GetMapping(value = "find/{id}",headers = {"token:${token}"})
-    public ApAuthor findByUserId(@PathVariable("id") int user_id,@HeaderParam("token") String token);
+    @GetMapping(value = "find/{id}")
+    ApAuthor findByUserId(@PathVariable("id") int user_id);
 
 }

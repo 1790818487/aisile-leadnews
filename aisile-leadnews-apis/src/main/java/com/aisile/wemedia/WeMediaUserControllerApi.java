@@ -7,5 +7,6 @@ public interface WeMediaUserControllerApi {
     ResponseResult addWmUser(WmUser wmUser);
 
     WmUser findByUserId(int user_id);
+
     ResponseResult updateById(WmUser wmUser);
 }
