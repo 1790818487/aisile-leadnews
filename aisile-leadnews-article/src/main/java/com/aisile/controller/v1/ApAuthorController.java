@@ -29,14 +29,15 @@ public class ApAuthorController implements AricleAuthorControllerApi {
 
     @Override
     @PostMapping("/add")
-    public ResponseResult saveArticle(@RequestBody ApAuthor apAuthor) {
+    public ApAuthor saveArticle(@RequestBody ApAuthor apAuthor) {
         apAuthorService.save(apAuthor);
-        return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
+        System.out.println(apAuthor);
+        return apAuthor;
     }
 
     @Override
     @GetMapping("find/{id}")
     public ApAuthor findByUserId(@PathVariable("id") int user_id) {
-       return apAuthorService.getOne(Wrappers.lambdaQuery(new ApAuthor()).eq(ApAuthor::getUserId, user_id));
+        return apAuthorService.getOne(Wrappers.lambdaQuery(new ApAuthor()).eq(ApAuthor::getUserId, user_id));
     }
 }

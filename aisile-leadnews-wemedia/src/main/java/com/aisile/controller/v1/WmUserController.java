@@ -27,9 +27,9 @@ public class WmUserController implements WeMediaUserControllerApi {
 
     @Override
     @PostMapping("add/wemedia")
-    public ResponseResult addWmUser(@RequestBody WmUser wmUser) {
+    public WmUser addWmUser(@RequestBody WmUser wmUser) {
         wmUserService.save(wmUser);
-        return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
+        return wmUser;
     }
 
     @Override

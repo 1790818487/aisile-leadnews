@@ -1,12 +1,10 @@
 package com.aisile.controller.v1;
 
-
-import com.aisile.common.exception.CustomExceptionCatch;
 import com.aisile.model.common.dtos.ResponseResult;
-import com.aisile.model.common.enums.AppHttpCodeEnum;
 import com.aisile.model.user.dtos.AuthDto;
-import com.aisile.model.user.pojos.ApUserIdentity;
+import com.aisile.service.IApUserIdentityService;
 import com.aisile.user.UserAuthorIdentityControllerApi;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -21,10 +19,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/identity")
 public class ApUserIdentityController implements UserAuthorIdentityControllerApi {
 
+    @Autowired
+    private IApUserIdentityService iApUserIdentityService;
+
     @Override
     @PostMapping("submit/{type}")
     public ResponseResult submitMaterial(@RequestBody AuthDto dto, @PathVariable short type) {
-
-        return null;
+        return iApUserIdentityService.userIdentity(dto,type);
     }
 }

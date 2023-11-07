@@ -63,7 +63,7 @@ public class ApUserIdentityServiceImpl extends ServiceImpl<ApUserIdentityMapper,
         if (apUserRealname == null)
             CustomExceptionCatch.catchsApp(AppHttpCodeEnum.AP_USER_DATA_NOT_EXIST);
         //判断实名认证的状态
-        if (apUserRealname.getStatus() == 9)
+        if (apUserRealname.getStatus() != 9)
             CustomExceptionCatch.catchsApp(AppHttpCodeEnum.USER_NONE_IDENTITY);
 
         //用户以上都通过.开始对身份认证进行审核
@@ -75,39 +75,46 @@ public class ApUserIdentityServiceImpl extends ServiceImpl<ApUserIdentityMapper,
         //如果状态未9或者2,不用重复审核,直接返回
         if (userIdentity.getStatus() == 9 || userIdentity.getStatus() == 2)
             CustomExceptionCatch.catchsApp(AppHttpCodeEnum.USER_ALREADY_IDENTITY);
+
         //在这里修改状态,审核通过,并且生成账号和密码,并告知用户成功了
-
-
         return this.createdArticleAndWe(userIdentity, type);
     }
 
     //创建自媒体账号
     @Transactional
     public ResponseResult createdArticleAndWe(ApUserIdentity identity, short type) {
-        ApUser apUser = apUserMapper.selectOne(
-                Wrappers.lambdaQuery(new ApUser())
-                        .eq(ApUser::getId, identity.getUserId())
-        );
-        apUser.setFlag(type);
-        identity.setStatus((short) 9);
-        identity.setUpdatedTime(LocalDateTime.now());
-        this.updateById(identity);
+        try {
+            ApUser apUser = apUserMapper.selectOne(
+                    Wrappers.lambdaQuery(new ApUser())
+                            .eq(ApUser::getId, identity.getUserId())
+            );
+            apUser.setFlag(type);
+            identity.setStatus((short) 9);
+            identity.setUpdatedTime(LocalDateTime.now());
+            this.updateById(identity);
 
-        WmUser wmUser = wemediaOpenFeign.findByUserId(identity.getUserId());
-        if (wmUser == null) {
-            wmUser = new WmUser();
-            wmUser.setApUserId(apUser.getId());
-            wmUser.setName(apUser.getId().toString());
-            wmUser.setPassword(apUser.getPassword());
-            wmUser.setNickname(apUser.getName());
-            wmUser.setStatus(0);
-            wemediaOpenFeign.addWmUser(wmUser);
+            WmUser wmUser = wemediaOpenFeign.findByUserId(identity.getUserId());
+            if (wmUser == null) {
+                wmUser = new WmUser();
+                wmUser.setApUserId(apUser.getId());
+                wmUser.setName(apUser.getName());
+                wmUser.setPassword(apUser.getPassword());
+                wmUser.setNickname(apUser.getName());
+                wmUser.setStatus(0);
+                wmUser.setScore(10);
+                wmUser = wemediaOpenFeign.addWmUser(wmUser);
+            }
+
+            ApAuthor apAuthor = this.createdArticle(wmUser);
+
+            System.out.println(apAuthor);
+            wmUser.setApAuthorId(apAuthor.getId());
+
+            return wemediaOpenFeign.updateById(wmUser);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw e;
         }
-
-        Integer id = this.createdArticle(wmUser).getId();
-        wmUser.setApAuthorId(id);
-
-        return wemediaOpenFeign.updateById(wmUser);
     }
 
     //创建作者信息
@@ -116,11 +123,12 @@ public class ApUserIdentityServiceImpl extends ServiceImpl<ApUserIdentityMapper,
         ApAuthor apAuthor = articleOpenFeign.findByUserId(wmUser.getApUserId());
         if (apAuthor == null) {
             apAuthor = new ApAuthor();
+            apAuthor.setName(wmUser.getName());
             apAuthor.setUserId(wmUser.getApUserId());
             apAuthor.setCreatedTime(LocalDateTime.now());
-            apAuthor.setType(Short.parseShort(wmUser.getType().toString()));
+            apAuthor.setType((short)0);
             apAuthor.setWmUserId(wmUser.getId());
-            articleOpenFeign.saveArticle(apAuthor);
+            apAuthor = articleOpenFeign.saveArticle(apAuthor);
         }
         return apAuthor;
     }
