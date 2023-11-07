@@ -5,6 +5,8 @@
     <file url="file://$PROJECT_DIR$/aisile-leadnews-admin/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aisile-leadnews-apis" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aisile-leadnews-apis/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-article/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-article/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aisile-leadnews-common" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aisile-leadnews-common/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aisile-leadnews-gateway/src/main/java" charset="UTF-8" />
@@ -13,6 +15,8 @@
     <file url="file://$PROJECT_DIR$/aisile-leadnews-user/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aisile-leadnews-utils" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/aisile-leadnews-utils/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-wemedia/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/aisile-leadnews-wemedia/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

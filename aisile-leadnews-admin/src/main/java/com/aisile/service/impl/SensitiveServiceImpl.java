@@ -10,8 +10,11 @@ import com.aisile.model.common.dtos.PageResponseResult;
 import com.aisile.model.common.dtos.ResponseResult;
 import com.aisile.model.common.enums.AppHttpCodeEnum;
 import com.aisile.service.ISensitiveService;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
@@ -29,6 +32,7 @@ import java.util.List;
  */
 @Service
 public class SensitiveServiceImpl extends ServiceImpl<SensitiveMapper, AdSensitive> implements ISensitiveService {
+
 
     @Override
     public ResponseResult showAllSensitive(SensitiveDto dto) {
@@ -61,6 +65,8 @@ public class SensitiveServiceImpl extends ServiceImpl<SensitiveMapper, AdSensiti
 
     @Override
     public ResponseResult delSensitive(int id) {
+        Wrappers.lambdaQuery(new AdSensitive()).eq(AdSensitive::getId,id);
+
         boolean b = this.removeById(id);
         if (b)
             return ResponseResult.errorResult(AppHttpCodeEnum.SUCCESS);

@@ -29,7 +29,9 @@ public enum AppHttpCodeEnum {
     NO_OPERATOR_AUTH(3000, "无权限操作"),
     NEED_ADMIND(3001, "需要管理员权限"),
     USERNAME_DISABLED(3002, "账户被禁用，请联系管理"),
-    DATA_ALREADY_DEL(505,"该数据早已被删除");
+    DATA_ALREADY_DEL(505,"该数据早已被删除"),
+    USER_NONE_IDENTITY(3003,"用户未实名认证"),
+    USER_ALREADY_IDENTITY(3003,"用户身份认证已经认证过了");
 
 
     int code;

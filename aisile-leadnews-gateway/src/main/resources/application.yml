@@ -14,6 +14,19 @@ spring:
           predicates:
             - Path=/api/user/**
 
+#        文章微服务
+        - id: article-service
+          uri: lb://article-service
+          predicates:
+            - Path=/api/apauthor/**
+
+#           自媒体服务相关的为服务
+        - id: wemedia-service
+          uri: lb://wemedia-service
+          predicates:
+            - Path=/api/wmuser/**
+
+
 #        - id: material-service
 #          uri: lb://material-service
 #          predicates:
