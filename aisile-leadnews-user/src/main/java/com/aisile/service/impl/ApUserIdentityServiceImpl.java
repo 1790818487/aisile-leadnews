@@ -81,7 +81,6 @@ public class ApUserIdentityServiceImpl extends ServiceImpl<ApUserIdentityMapper,
     }
 
     //创建自媒体账号
-    @Transactional
     public ResponseResult createdArticleAndWe(ApUserIdentity identity, short type) {
         try {
             ApUser apUser = apUserMapper.selectOne(
@@ -126,7 +125,7 @@ public class ApUserIdentityServiceImpl extends ServiceImpl<ApUserIdentityMapper,
             apAuthor.setName(wmUser.getName());
             apAuthor.setUserId(wmUser.getApUserId());
             apAuthor.setCreatedTime(LocalDateTime.now());
-            apAuthor.setType((short)0);
+            apAuthor.setType((short) 0);
             apAuthor.setWmUserId(wmUser.getId());
             apAuthor = articleOpenFeign.saveArticle(apAuthor);
         }
