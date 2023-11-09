@@ -4,6 +4,7 @@ import com.aisile.model.common.dtos.ResponseResult;
 import com.aisile.model.user.dtos.AuthDto;
 import com.aisile.service.IApUserIdentityService;
 import com.aisile.user.UserAuthorIdentityControllerApi;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

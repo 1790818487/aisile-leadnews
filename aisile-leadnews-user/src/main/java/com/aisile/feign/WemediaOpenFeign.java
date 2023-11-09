@@ -1,6 +1,5 @@
 package com.aisile.feign;
 
-import com.aisile.model.article.pojos.ApAuthor;
 import com.aisile.model.common.dtos.ResponseResult;
 import com.aisile.model.media.pojos.WmUser;
 import org.springframework.cloud.openfeign.FeignClient;

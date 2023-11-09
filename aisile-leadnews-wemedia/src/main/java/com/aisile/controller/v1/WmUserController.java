@@ -7,6 +7,7 @@ import com.aisile.model.media.pojos.WmUser;
 import com.aisile.service.IWmUserService;
 import com.aisile.wemedia.WeMediaUserControllerApi;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,6 +28,7 @@ public class WmUserController implements WeMediaUserControllerApi {
 
     @Override
     @PostMapping("add/wemedia")
+    @GlobalTransactional(rollbackFor = Exception.class)
     public WmUser addWmUser(@RequestBody WmUser wmUser) {
         wmUserService.save(wmUser);
         return wmUser;
@@ -45,6 +47,7 @@ public class WmUserController implements WeMediaUserControllerApi {
 
     @Override
     @PostMapping("update")
+    @GlobalTransactional(rollbackFor = Exception.class)
     public ResponseResult updateById(@RequestBody WmUser wmUser) {
          wmUserService.updateById(wmUser);
          return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);

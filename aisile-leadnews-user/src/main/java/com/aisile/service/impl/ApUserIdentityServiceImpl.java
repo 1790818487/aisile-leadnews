@@ -6,7 +6,6 @@ import com.aisile.feign.WemediaOpenFeign;
 import com.aisile.mapper.ApUserMapper;
 import com.aisile.mapper.ApUserRealnameMapper;
 import com.aisile.model.article.pojos.ApAuthor;
-
 import com.aisile.model.common.dtos.ResponseResult;
 import com.aisile.model.common.enums.AppHttpCodeEnum;
 import com.aisile.model.media.pojos.WmUser;
@@ -18,13 +17,13 @@ import com.aisile.model.user.pojos.ApUserRealname;
 import com.aisile.service.IApUserIdentityService;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
 import java.time.LocalDateTime;
-import java.util.Date;
+
 
 /**
  * <p>
@@ -50,6 +49,7 @@ public class ApUserIdentityServiceImpl extends ServiceImpl<ApUserIdentityMapper,
     protected ApUserMapper apUserMapper;
 
     @Override
+    @GlobalTransactional(rollbackFor = Exception.class)
     public ResponseResult userIdentity(AuthDto dto, short type) {
         //先判断空
         if (dto == null || type != 0 && type != 1 && type != 2)
@@ -76,48 +76,48 @@ public class ApUserIdentityServiceImpl extends ServiceImpl<ApUserIdentityMapper,
         if (userIdentity.getStatus() == 9 || userIdentity.getStatus() == 2)
             CustomExceptionCatch.catchsApp(AppHttpCodeEnum.USER_ALREADY_IDENTITY);
 
-        //在这里修改状态,审核通过,并且生成账号和密码,并告知用户成功了
-        return this.createdArticleAndWe(userIdentity, type);
-    }
-
-    //创建自媒体账号
-    public ResponseResult createdArticleAndWe(ApUserIdentity identity, short type) {
         try {
-            ApUser apUser = apUserMapper.selectOne(
-                    Wrappers.lambdaQuery(new ApUser())
-                            .eq(ApUser::getId, identity.getUserId())
-            );
-            apUser.setFlag(type);
-            identity.setStatus((short) 9);
-            identity.setUpdatedTime(LocalDateTime.now());
-            this.updateById(identity);
-
-            WmUser wmUser = wemediaOpenFeign.findByUserId(identity.getUserId());
-            if (wmUser == null) {
-                wmUser = new WmUser();
-                wmUser.setApUserId(apUser.getId());
-                wmUser.setName(apUser.getName());
-                wmUser.setPassword(apUser.getPassword());
-                wmUser.setNickname(apUser.getName());
-                wmUser.setStatus(0);
-                wmUser.setScore(10);
-                wmUser = wemediaOpenFeign.addWmUser(wmUser);
-            }
-
-            ApAuthor apAuthor = this.createdArticle(wmUser);
-
-            System.out.println(apAuthor);
-            wmUser.setApAuthorId(apAuthor.getId());
-
-            return wemediaOpenFeign.updateById(wmUser);
+            //在这里修改状态,审核通过,并且生成账号和密码,并告知用户成功了
+            return this.createdArticleAndWe(userIdentity, type);
         } catch (Exception e) {
             e.printStackTrace();
             throw e;
         }
     }
 
-    //创建作者信息
+    //创建自媒体账号
+    public ResponseResult createdArticleAndWe(ApUserIdentity identity, short type) {
 
+        ApUser apUser = apUserMapper.selectOne(
+                Wrappers.lambdaQuery(new ApUser())
+                        .eq(ApUser::getId, identity.getUserId())
+        );
+        apUser.setFlag(type);
+        identity.setStatus((short) 9);
+        identity.setUpdatedTime(LocalDateTime.now());
+        this.updateById(identity);
+        WmUser wmUser = wemediaOpenFeign.findByUserId(identity.getUserId());
+        if (wmUser == null) {
+            wmUser = new WmUser();
+            wmUser.setApUserId(apUser.getId());
+            wmUser.setName(apUser.getName());
+            wmUser.setPassword(apUser.getPassword());
+            wmUser.setNickname(apUser.getName());
+            wmUser.setStatus(0);
+            wmUser.setScore(10);
+            wmUser = wemediaOpenFeign.addWmUser(wmUser);
+        }
+
+        ApAuthor apAuthor = this.createdArticle(wmUser);
+
+        System.out.println(apAuthor);
+        wmUser.setApAuthorId(apAuthor.getId());
+
+        int a = 6 / 0;
+        return wemediaOpenFeign.updateById(wmUser);
+    }
+
+    //创建作者信息
     public ApAuthor createdArticle(WmUser wmUser) {
         ApAuthor apAuthor = articleOpenFeign.findByUserId(wmUser.getApUserId());
         if (apAuthor == null) {

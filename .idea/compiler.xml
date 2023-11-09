@@ -17,9 +17,11 @@
         <module name="aisile-leadnews-model" />
         <module name="aisile-leadnews-admin" />
         <module name="aisile-leadnews-apis" />
+        <module name="aisile-leadnews-seata" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="aisile-leadnews-seata" target="1.8" />
       <module name="heima-leadnews-app-gateway" target="1.8" />
       <module name="heima-leadnews-article" target="1.8" />
       <module name="heima-leadnews-behavior" target="1.8" />

@@ -1,0 +1,36 @@
+seata:
+  application-id: ${spring.application.name}
+  enabled: true
+  # 是否启用数据源bean的自动代理
+  enable-auto-data-source-proxy: true
+  service:
+    vgroup-mapping:
+      user-service-group: default   # 必须和服务器配置一样
+    disable-global-transaction: false
+  tx-service-group: user-service-group  # 必须和服务器配置一样
+  registry:
+    type: nacos
+    nacos:
+      # Nacos 服务地址
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      namespace: 2f3e811b-dd15-4ed7-8169-dd2e95792294
+      application: seata-server # 必须和服务器配置一样
+      username: nacos
+      password: nacos
+      cluster: default
+  config:
+    type: nacos
+    nacos:
+      server-addr: 127.0.0.1:8848
+      group: SEATA_GROUP
+      namespace: 2f3e811b-dd15-4ed7-8169-dd2e95792294
+      username: nacos
+      password: nacos
+
+  client:
+    rm:
+      # 是否上报成功状态
+      report-success-enable: true
+      # 重试次数
+      report-retry-count: 5

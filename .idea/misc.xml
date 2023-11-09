@@ -17,6 +17,7 @@
     </option>
     <option name="ignoredFiles">
       <set>
+        <option value="$PROJECT_DIR$/aisile-leadnews-seata/pom.xml" />
         <option value="$PROJECT_DIR$/heima-leadnews-eureka/pom.xml" />
         <option value="$PROJECT_DIR$/heima-leadnews-tests/pom.xml" />
         <option value="$PROJECT_DIR$/leadnews-admin/pom.xml" />

@@ -12,7 +12,7 @@ spring:
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/api/user/**
+            - Path=/api/user/**,/api/identity/**,/api/user/ApUserRealname/**
 
 #        文章微服务
         - id: article-service
@@ -25,14 +25,3 @@ spring:
           uri: lb://wemedia-service
           predicates:
             - Path=/api/wmuser/**
-
-
-#        - id: material-service
-#          uri: lb://material-service
-#          predicates:
-#            - Path=/item/**,/category/**
-#
-#        - id: order-service
-#          uri: lb://order-service
-#          predicates:
-#            - Path=/order/**,/company/**,/type/**

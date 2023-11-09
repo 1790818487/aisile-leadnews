@@ -1,7 +1,7 @@
 package com.aisile.feign;
 
 import com.aisile.model.article.pojos.ApAuthor;
-import com.aisile.model.common.dtos.ResponseResult;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
