@@ -31,7 +31,9 @@ public enum AppHttpCodeEnum {
     USERNAME_DISABLED(3002, "账户被禁用，请联系管理"),
     DATA_ALREADY_DEL(505,"该数据早已被删除"),
     USER_NONE_IDENTITY(3003,"用户未实名认证"),
-    USER_ALREADY_IDENTITY(3003,"用户身份认证已经认证过了");
+    USER_ALREADY_IDENTITY(3003,"用户身份认证已经认证过了"),
+    USER_NONE_EXISTS(3004,"账号不存在"),
+    UNKNOWN_USER(3005,"未知用户");
 
 
     int code;

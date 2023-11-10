@@ -2,8 +2,10 @@ package com.aisile.common.filters.web;
 
 import com.aisile.model.common.dtos.ResponseResult;
 import com.aisile.model.common.enums.AppHttpCodeEnum;
+import com.aisile.model.media.pojos.WmUser;
 import com.aisile.utils.common.AppJwtUtil;
 import com.aisile.utils.threadlocal.AdminThreadLocalUtils;
+import com.aisile.utils.threadlocal.WmThreadLocalUtils;
 import com.alibaba.fastjson.JSON;
 import io.jsonwebtoken.Claims;
 
@@ -28,6 +30,15 @@ public class AuthoriWebFilter implements Filter {
             filterChain.doFilter(request, response);
         else {
             String token = request.getHeader("token");
+            String user_id = request.getHeader("user_id");
+
+            if (user_id!=null&&!"".equals(user_id.trim()))
+            {
+                WmUser wmUser = new WmUser();
+                wmUser.setApUserId(Integer.parseInt(user_id));
+                WmThreadLocalUtils.setUser(wmUser);
+            }
+
             ResponseResult result = null;
             try {
                 if (token == null || "".equals(token.trim()))

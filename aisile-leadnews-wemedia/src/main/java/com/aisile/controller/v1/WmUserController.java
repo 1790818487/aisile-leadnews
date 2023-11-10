@@ -3,6 +3,7 @@ package com.aisile.controller.v1;
 
 import com.aisile.model.common.dtos.ResponseResult;
 import com.aisile.model.common.enums.AppHttpCodeEnum;
+import com.aisile.model.media.dtos.WmUserDto;
 import com.aisile.model.media.pojos.WmUser;
 import com.aisile.service.IWmUserService;
 import com.aisile.wemedia.WeMediaUserControllerApi;
@@ -51,5 +52,11 @@ public class WmUserController implements WeMediaUserControllerApi {
     public ResponseResult updateById(@RequestBody WmUser wmUser) {
          wmUserService.updateById(wmUser);
          return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
+    }
+
+    @Override
+    @PostMapping("login/in")
+    public ResponseResult loginWeUser(@RequestBody WmUserDto wmUserDto) {
+        return wmUserService.loginWeUser(wmUserDto);
     }
 }

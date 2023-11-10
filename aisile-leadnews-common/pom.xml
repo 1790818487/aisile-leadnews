@@ -20,7 +20,7 @@
         </dependency>
         <dependency>
             <groupId>com.aisile</groupId>
-            <artifactId>aisile-leadnews-utils</artifactId>
+            <artifactId>aisile-leadnews-com.aisile.utils</artifactId>
         </dependency>
         <dependency>
             <groupId>org.reflections</groupId>

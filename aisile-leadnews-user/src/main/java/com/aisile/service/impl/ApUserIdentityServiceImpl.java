@@ -75,7 +75,6 @@ public class ApUserIdentityServiceImpl extends ServiceImpl<ApUserIdentityMapper,
         //如果状态未9或者2,不用重复审核,直接返回
         if (userIdentity.getStatus() == 9 || userIdentity.getStatus() == 2)
             CustomExceptionCatch.catchsApp(AppHttpCodeEnum.USER_ALREADY_IDENTITY);
-
         try {
             //在这里修改状态,审核通过,并且生成账号和密码,并告知用户成功了
             return this.createdArticleAndWe(userIdentity, type);
@@ -109,11 +108,9 @@ public class ApUserIdentityServiceImpl extends ServiceImpl<ApUserIdentityMapper,
         }
 
         ApAuthor apAuthor = this.createdArticle(wmUser);
-
-        System.out.println(apAuthor);
         wmUser.setApAuthorId(apAuthor.getId());
 //
-        int a = 6 / 0;
+//        int a = 6 / 0;
         return wemediaOpenFeign.updateById(wmUser);
     }
 

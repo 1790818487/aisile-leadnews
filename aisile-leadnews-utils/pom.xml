@@ -7,10 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>aisile-leadnews-utils</artifactId>
+    <artifactId>aisile-leadnews-com.aisile.utils</artifactId>
     <packaging>jar</packaging>
 
-    <name>aisile-leadnews-utils</name>
+    <name>aisile-leadnews-com.aisile.utils</name>
 
     <dependencies>
         <dependency>

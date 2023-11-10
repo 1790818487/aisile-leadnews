@@ -8,20 +8,23 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="aisile-leadnews-wemedia" />
-        <module name="aisile-leadnews-utils" />
-        <module name="aisile-leadnews-user" />
+        <module name="aisile=leadnews-usergateway" />
         <module name="aisile-leadnews-gateway" />
-        <module name="aisile-leadnews-article" />
+        <module name="aisile-leadnews-usergateway" />
         <module name="heima-leadnews-admin" />
         <module name="aisile-leadnews-common" />
         <module name="aisile-leadnews-model" />
+        <module name="aisile-leadnews-seata" />
+        <module name="aisile-leadnews-utils" />
+        <module name="aisile-leadnews-user" />
+        <module name="aisile-leadnews-article" />
         <module name="aisile-leadnews-admin" />
         <module name="aisile-leadnews-apis" />
-        <module name="aisile-leadnews-seata" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="aisile-leadnews-seata" target="1.8" />
+      <module name="aisile=leadnews-usergateway" target="1.8" />
       <module name="heima-leadnews-app-gateway" target="1.8" />
       <module name="heima-leadnews-article" target="1.8" />
       <module name="heima-leadnews-behavior" target="1.8" />

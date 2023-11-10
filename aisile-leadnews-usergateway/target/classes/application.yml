@@ -1,0 +1,27 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+#          管理员微服务网关
+#        - id: login-service
+#          uri: lb://login-service
+#          predicates:
+#            - Path=/api/v1/login/**,/api/v1/adChannel/**,/api/v1/sensitive/**
+
+#              用户微服务网关
+#        - id: user-service
+#          uri: lb://user-service
+#          predicates:
+#            - Path=/api/v1/apUser/**,/api/identity/**,/api/user/ApUserRealname/**
+#
+##        文章微服务
+#        - id: article-service
+#          uri: lb://article-service
+#          predicates:
+#            - Path=/api/apauthor/**
+#
+##           自媒体服务相关的为服务
+        - id: wemedia-service
+          uri: lb://wemedia-service
+          predicates:
+            - Path=/api/wmuser/**,/api/material/**
