@@ -4,35 +4,34 @@ import com.aliyun.oss.OSS;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.model.PutObjectRequest;
 import com.aliyun.oss.model.PutObjectResult;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
-@Setter
-@PropertySource("classpath:aliyun.properties")
 @Component
+@PropertySource("classpath:aliyun.properties")
 public class OSSClientUtil {
 
     @Value("${OSS_ACCESS_KEY_ID}")
-    private static String OSS_ACCESS_KEY_ID;
+    private String OSS_ACCESS_KEY_ID;
     @Value("${OSS_ACCESS_KEY_SECRET}")
-    private static String OSS_ACCESS_KEY_SECRET;
+    private String OSS_ACCESS_KEY_SECRET;
     @Value("${prefix}")
-    private static String prefix;
+    private String prefix;
     @Value("${bucket}")
-    private static String bucket;
-    private static String dir;
-
+    private String bucket;
+    @Value("${dir}")
+    private String dir;
     @Value("${endpoint}")
-    private static String endpoint;
+    private String endpoint;
 
 
-    public static String uploadFile(MultipartFile file) {
+    public String uploadFile(MultipartFile file) {
+        System.out.println(OSS_ACCESS_KEY_ID);
+        System.out.println(prefix);
         OSS ossClient = null;
         try {
             // 2305a-images.oss-cn-beijing.aliyuncs.com  oss-cn-beijing.aliyuncs.com
@@ -59,10 +58,11 @@ public class OSSClientUtil {
             PutObjectRequest putObjectRequest = new PutObjectRequest(bucket, dir + fileName, file.getInputStream());
             // 创建PutObject请求。
             PutObjectResult result = ossClient.putObject(putObjectRequest);
+            System.out.println(result);
             //  https://2305a-images.oss-cn-beijing.aliyuncs.com/data/f646c44319774a37a36f18bfb5e86ff4.png
             return prefix + dir + fileName;
         } catch (Exception oe) {
-
+            oe.printStackTrace();
         } finally {
             if (ossClient != null) {
                 ossClient.shutdown();

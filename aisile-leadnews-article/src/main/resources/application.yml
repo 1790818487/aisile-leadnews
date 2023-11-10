@@ -4,9 +4,9 @@ seata:
   enable-auto-data-source-proxy: true
   service:
     vgroup-mapping:
-      user-service-group: default # 必须和服务器配置一样
+      article-service-group: default # 必须和服务器配置一样
     disable-global-transaction: false
-  tx-service-group: user-service-group  # 必须和服务器配置一样
+  tx-service-group: article-service-group  # 必须和服务器配置一样
   registry:
     type: nacos
     nacos:

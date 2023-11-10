@@ -12,7 +12,7 @@ spring:
         - id: user-service
           uri: lb://user-service
           predicates:
-            - Path=/api/user/**,/api/identity/**,/api/user/ApUserRealname/**
+            - Path=/api/v1/apUser/**,/api/identity/**,/api/user/ApUserRealname/**
 
 #        文章微服务
         - id: article-service

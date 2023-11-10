@@ -13,7 +13,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 @Configuration
 @MapperScan("com.aisile.mapper")
-@ComponentScan({"com.aisile.common.exception","com.aisile.common.knife4j"})
+@ComponentScan({"com.aisile.common.exception","com.aisile.common.knife4j","com.aisile.utils.file"})
 @EnableDiscoveryClient
 @EnableWebMvc
 @ServletComponentScan("com.aisile.common.filters.web")

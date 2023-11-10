@@ -112,7 +112,7 @@ public class ApUserIdentityServiceImpl extends ServiceImpl<ApUserIdentityMapper,
 
         System.out.println(apAuthor);
         wmUser.setApAuthorId(apAuthor.getId());
-
+//
         int a = 6 / 0;
         return wemediaOpenFeign.updateById(wmUser);
     }
