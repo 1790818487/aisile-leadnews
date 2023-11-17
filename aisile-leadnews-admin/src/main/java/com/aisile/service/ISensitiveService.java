@@ -22,5 +22,5 @@ public interface ISensitiveService extends IService<AdSensitive> {
 
     ResponseResult addSensitive(String name);
 
-    ResponseResult delSensitive( int id);
+    ResponseResult delSensitive(int id);
 }

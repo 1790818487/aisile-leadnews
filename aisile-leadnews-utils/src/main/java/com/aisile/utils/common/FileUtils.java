@@ -17,6 +17,4 @@ public class FileUtils {
         BufferedReader br=new BufferedReader(new InputStreamReader(in));
         return br.readLine();
     }
-
-
 }

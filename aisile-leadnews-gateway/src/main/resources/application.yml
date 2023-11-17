@@ -4,7 +4,7 @@ spring:
       routes:
 #          管理员微服务网关
         - id: login-service
-          uri: lb://login-service
+          uri: lb://admin-service
           predicates:
             - Path=/api/v1/login/**,/api/v1/adChannel/**,/api/v1/sensitive/**
 

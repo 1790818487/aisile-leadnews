@@ -27,12 +27,10 @@ public class ApUserController implements ApUserControllerApi {
     @Autowired
     private OSSClientUtil ossClientUtil;
 
-
     @Override
     @PostMapping("upload")
     public String uploadFile(@RequestPart MultipartFile file){
         String s = ossClientUtil.uploadFile(file);
-        System.out.println(s);
         return s;
     }
 }

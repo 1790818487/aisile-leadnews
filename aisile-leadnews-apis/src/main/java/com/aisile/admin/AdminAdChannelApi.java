@@ -10,4 +10,6 @@ public interface AdminAdChannelApi {
     ResponseResult<Object> showAllChannel(ChannelDto dto);
 
     ResponseResult<Object> addAllChannel(@RequestBody AdChannel adChannel);
+
+    ResponseResult showAllChannelNoPage();
 }

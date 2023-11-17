@@ -30,8 +30,6 @@ public class OSSClientUtil {
 
 
     public String uploadFile(MultipartFile file) {
-        System.out.println(OSS_ACCESS_KEY_ID);
-        System.out.println(prefix);
         OSS ossClient = null;
         try {
             // 2305a-images.oss-cn-beijing.aliyuncs.com  oss-cn-beijing.aliyuncs.com

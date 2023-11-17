@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class WmNewsDto {
@@ -28,7 +29,7 @@ public class WmNewsDto {
     /**
      * 文章内容
      */
-    private String content;
+    private List<Map> content;
     /**
      * 文章封面类型  0 无图 1 单图 3 多图 -1 自动
      */

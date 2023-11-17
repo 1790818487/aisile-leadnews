@@ -3,6 +3,7 @@ package com.aisile.model.media.dtos;
 import com.aisile.model.common.dtos.PageRequestDto;
 import lombok.Data;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -25,10 +26,16 @@ public class WmNewsPageReqDto extends PageRequestDto {
     /**
      * 开始时间
      */
-    private Date beginPubDate;
+    private LocalDate beginPubDate;
 
     /**
      * 结束时间
      */
-    private Date endPubDate;
+    private LocalDate endPubDate;
+
+    public void checkParams(){
+        if ("".equals(this.keyword))
+            this.keyword=null;
+    }
+
 }

@@ -14,14 +14,14 @@ spring:
 #          predicates:
 #            - Path=/api/v1/apUser/**,/api/identity/**,/api/user/ApUserRealname/**
 #
-##        文章微服务
-#        - id: article-service
-#          uri: lb://article-service
-#          predicates:
-#            - Path=/api/apauthor/**
+#        文章微服务
+        - id: article-service
+          uri: lb://article-service
+          predicates:
+            - Path=/api/article/**
 #
 ##           自媒体服务相关的为服务
         - id: wemedia-service
           uri: lb://wemedia-service
           predicates:
-            - Path=/api/wmuser/**,/api/material/**
+            - Path=/api/wmuser/**,/api/material/**,/api/wmnews/**

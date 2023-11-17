@@ -19,6 +19,7 @@ public class AutoRealName {
 
     @Autowired
     private IApUserRealnameService mapper;
+
     @Autowired
     private RestTemplate restTemplate;
 

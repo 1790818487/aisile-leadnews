@@ -5,7 +5,9 @@ import com.aisile.admin.AdminSensitiveApi;
 import com.aisile.model.admin.dtos.SensitiveDto;
 import com.aisile.model.common.dtos.PageRequestDto;
 import com.aisile.model.common.dtos.ResponseResult;
+import com.aisile.model.common.enums.AppHttpCodeEnum;
 import com.aisile.service.ISensitiveService;
+import com.aisile.service.WemediaNewsAutoScanService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,6 +26,9 @@ public class SensitiveController implements AdminSensitiveApi {
     @Autowired
     private ISensitiveService sensitiveService;
 
+    @Autowired
+    private WemediaNewsAutoScanService autoScanService;
+
     @Override
     @PostMapping("sensitive")
     public ResponseResult showAllSensitive(@RequestBody SensitiveDto dto) {
@@ -40,5 +45,22 @@ public class SensitiveController implements AdminSensitiveApi {
     @DeleteMapping("{id}")
     public ResponseResult delSensitive(@PathVariable int id) {
         return sensitiveService.delSensitive(id);
+    }
+
+    @Override
+    @GetMapping("examine/{userId}")
+    public ResponseResult articleExamine(@PathVariable int userId) {
+        autoScanService.autoScanByMediaNewsId(userId);
+        return ResponseResult.okResult(AppHttpCodeEnum.SUCCESS);
+    }
+
+    /**
+     *执行导出敏感词
+     * @return: com.aisile.model.common.dtos.ResponseResult
+    */
+    @Override
+    @GetMapping("export")
+    public ResponseResult exportSensitive() {
+        return null;
     }
 }

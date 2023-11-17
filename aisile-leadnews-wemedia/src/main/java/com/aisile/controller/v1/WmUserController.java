@@ -29,7 +29,6 @@ public class WmUserController implements WeMediaUserControllerApi {
 
     @Override
     @PostMapping("add/wemedia")
-    @GlobalTransactional(rollbackFor = Exception.class)
     public WmUser addWmUser(@RequestBody WmUser wmUser) {
         wmUserService.save(wmUser);
         return wmUser;
@@ -38,12 +37,7 @@ public class WmUserController implements WeMediaUserControllerApi {
     @Override
     @GetMapping("fing/{id}")
     public WmUser findByUserId(@PathVariable("id") int user_id) {
-        return wmUserService.getOne(
-                Wrappers.lambdaQuery(new WmUser()).eq(
-                        WmUser::getApUserId, user_id
-                )
-        );
-
+        return wmUserService.getById(user_id);
     }
 
     @Override

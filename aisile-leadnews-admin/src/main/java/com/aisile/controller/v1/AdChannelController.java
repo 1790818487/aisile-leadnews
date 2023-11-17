@@ -35,4 +35,11 @@ public class AdChannelController implements AdminAdChannelApi {
     public ResponseResult<Object> addAllChannel(@RequestBody AdChannel adChannel){
         return adChannelService.addAdChannel(adChannel);
     }
+
+    @Override
+    @GetMapping
+    public ResponseResult showAllChannelNoPage() {
+        return ResponseResult.okResult(adChannelService.list());
+    }
+
 }

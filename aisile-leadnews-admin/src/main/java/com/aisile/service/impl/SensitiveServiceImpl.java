@@ -33,7 +33,6 @@ import java.util.List;
 @Service
 public class SensitiveServiceImpl extends ServiceImpl<SensitiveMapper, AdSensitive> implements ISensitiveService {
 
-
     @Override
     public ResponseResult showAllSensitive(SensitiveDto dto) {
         dto.checkParam();
@@ -65,6 +64,7 @@ public class SensitiveServiceImpl extends ServiceImpl<SensitiveMapper, AdSensiti
 
     @Override
     public ResponseResult delSensitive(int id) {
+
         Wrappers.lambdaQuery(new AdSensitive()).eq(AdSensitive::getId,id);
 
         boolean b = this.removeById(id);

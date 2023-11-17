@@ -12,4 +12,5 @@ public interface WeMediaUserControllerApi {
     ResponseResult updateById(WmUser wmUser);
 
     ResponseResult loginWeUser(WmUserDto wmUserDto);
+
 }

@@ -49,7 +49,8 @@ public class AuthoriWebFilter implements Filter {
                     if (i == -1 || i == 0) {
                         if (i == 0)
                             response.setHeader("REF_TOKEN",
-                                    AppJwtUtil.getToken((long) AdminThreadLocalUtils.getUser().getId()));
+                                    AppJwtUtil.getToken(System.currentTimeMillis()));
+                        response.setHeader("Access-Control-Expose-Headers","REF_TOKEN");
                         filterChain.doFilter(request, response);
                     } else if (i == 1)
                         result = ResponseResult.errorResult(AppHttpCodeEnum.TOKEN_EXPIRE);

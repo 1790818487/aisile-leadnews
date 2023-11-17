@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
@@ -69,12 +70,14 @@ public class WmNews implements Serializable {
      * 创建时间
      */
     @TableField("created_time")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date createdTime;
 
     /**
      * 提交时间
      */
     @TableField("submited_time")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date submitedTime;
 
     /**
@@ -94,6 +97,7 @@ public class WmNews implements Serializable {
      * 定时发布时间，不定时则为空
      */
     @TableField("publish_time")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private Date publishTime;
 
     /**
